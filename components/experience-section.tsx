@@ -1,0 +1,102 @@
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+
+export function ExperienceSection() {
+  const experiences = [
+    {
+      company: "Visa Inc.",
+      role: "Senior Software Engineer",
+      period: "Jul 2022 - Jul 2024",
+      location: "Bangalore, India",
+      achievements: [
+        "Led development of comprehensive data privacy platform automating GDPR/CCPA compliance workflows, reducing manual effort by 80%",
+        "Architected scalable data pipelines using Apache Kafka and Spark, processing 10M+ records daily with 99.9% reliability",
+        "Built real-time monitoring dashboard using React and Spring Boot, improving operational efficiency by 40%",
+        "Implemented automated testing framework achieving 90% code coverage and reducing production bugs by 60%",
+        "Mentored 3 junior engineers and conducted technical interviews for 15+ candidates",
+      ],
+      technologies: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "Apache Kafka",
+        "Spark",
+        "PostgreSQL",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+      ],
+    },
+    {
+      company: "Citicorp Services India Ltd.",
+      role: "Software Engineering Intern",
+      period: "Jan 2022 - Jun 2022",
+      location: "Chennai, India",
+      achievements: [
+        "Developed microservices for banking application using Spring Boot and PostgreSQL",
+        "Implemented RESTful APIs serving 100K+ daily requests with sub-200ms latency",
+        "Created automated deployment pipelines using Jenkins and Docker",
+        "Collaborated with cross-functional teams in Agile environment",
+      ],
+      technologies: ["Java", "Spring Boot", "PostgreSQL", "Docker", "Jenkins", "REST APIs"],
+    },
+    {
+      company: "MIT Data Centre",
+      role: "Research Assistant",
+      period: "Jun 2021 - Dec 2021",
+      location: "Chennai, India",
+      achievements: [
+        "Conducted research on distributed machine learning systems",
+        'Published paper on "Efficient Resource Allocation in Edge Computing" (IEEE)',
+        "Developed prototype system demonstrating 35% improvement in resource utilization",
+        "Presented findings at international conference",
+      ],
+      technologies: ["Python", "TensorFlow", "Docker", "Kubernetes", "Research"],
+    },
+  ]
+
+  return (
+    <section id="experience" className="py-20 px-4 bg-slate-950/50">
+      <div className="container mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-12 text-slate-100">Work Experience</h2>
+
+        <div className="space-y-8 max-w-4xl mx-auto">
+          {experiences.map((exp, index) => (
+            <Card
+              key={index}
+              className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm hover:border-cyan-400/50 transition-all"
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-cyan-400">{exp.role}</h3>
+                  <p className="text-xl text-slate-100 mt-1">{exp.company}</p>
+                </div>
+                <div className="text-slate-400 mt-2 md:mt-0 md:text-right">
+                  <p>{exp.period}</p>
+                  <p className="text-sm">{exp.location}</p>
+                </div>
+              </div>
+
+              <ul className="space-y-2 mb-6">
+                {exp.achievements.map((achievement, i) => (
+                  <li key={i} className="text-slate-300 flex items-start">
+                    <span className="text-cyan-400 mr-2">▹</span>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-wrap gap-2">
+                {exp.technologies.map((tech, i) => (
+                  <Badge key={i} variant="secondary" className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
