@@ -7,10 +7,12 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Sivaganesh Balaganesh - Software Engineer",
+  title: "Sivaganesh B - Software Engineer",
   description:
     "Personal portfolio of Sivaganesh Balaganesh - Full-Stack & Data Engineer seeking Summer 2026 internships",
-  generator: "v0.app",
+  icons: {
+    icon: "/favicon.svg",
+  },
 }
 
 export default function RootLayout({
