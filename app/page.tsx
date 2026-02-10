@@ -5,6 +5,8 @@ import { ProjectsSection } from "@/components/projects-section"
 import { SkillsSection } from "@/components/skills-section"
 import { ContactSection } from "@/components/contact-section"
 import { Navigation } from "@/components/navigation"
+import { SectionWrapper } from "@/components/section-wrapper"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 export default function Home() {
   return (
@@ -12,12 +14,23 @@ export default function Home() {
       <Navigation />
       <main>
         <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <ContactSection />
+        <SectionWrapper delay={0.2}>
+          <AboutSection />
+        </SectionWrapper>
+        <SectionWrapper delay={0.1}>
+          <ExperienceSection />
+        </SectionWrapper>
+        <SectionWrapper delay={0.1}>
+          <ProjectsSection />
+        </SectionWrapper>
+        <SectionWrapper delay={0.1}>
+          <SkillsSection />
+        </SectionWrapper>
+        <SectionWrapper delay={0.1}>
+          <ContactSection />
+        </SectionWrapper>
       </main>
+      <ScrollToTop />
     </div>
   )
 }

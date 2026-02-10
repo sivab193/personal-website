@@ -7,8 +7,7 @@ import { TerminalAnimation } from "./terminal-animation"
 
 export function HeroSection() {
   const [displayText, setDisplayText] = useState("")
-  const fullText = "Software Developer | AI Enthusiast"
-
+  const fullText = "Full Stack Developer"
   useEffect(() => {
     let index = 0
     const timer = setInterval(() => {
