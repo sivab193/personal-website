@@ -1,10 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Linkedin, Github, MapPin, Phone } from "lucide-react"
+import { Mail, Linkedin, Github, MapPin } from "lucide-react"
 
 export function ContactSection() {
   return (
@@ -25,15 +22,15 @@ export function ContactSection() {
                 <Mail className="w-5 h-5 text-cyan-400 mt-1" />
                 <div>
                   <p className="text-slate-300 font-semibold">Email</p>
+                  <a href="mailto:sbalagan@purdue.edu" className="text-slate-400 hover:text-cyan-400 transition-colors">
+                    sbalagan@purdue.edu
+                  </a>
+                  <br />
                   <a
                     href="mailto:sivaganesh193@gmail.com"
                     className="text-slate-400 hover:text-cyan-400 transition-colors"
                   >
                     sivaganesh193@gmail.com
-                  </a>
-                  <br />
-                  <a href="mailto:sbalagan@purdue.edu" className="text-slate-400 hover:text-cyan-400 transition-colors">
-                    sbalagan@purdue.edu
                   </a>
                 </div>
               </div>
@@ -74,7 +71,7 @@ export function ContactSection() {
                     className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
                   >
                     <span className="font-bold border border-current rounded px-1 text-xs">IEEE</span>
-                    <span className="text-sm">IEEE Profile</span>
+                    <span className="text-sm">Profile</span>
                   </a>
                 </div>
               </div>

@@ -1,34 +1,74 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
+interface Achievement {
+  text: string
+  link: string
+}
+
+interface Experience {
+  company: string
+  role: string
+  period: string
+  location: string
+  achievements: (string | Achievement)[]
+  technologies: string[]
+}
+
 export function ExperienceSection() {
-  const experiences = [
+  const experiences: Experience[] = [
     {
       company: "Visa Inc.",
       role: "Senior Software Engineer",
-      period: "Jul 2022 - Jul 2024",
+      period: "Jun 2022 - Jul 2025",
       location: "Bangalore, India",
       achievements: [
-        "Spearheaded the development of a Data Privacy Platform, automating compliance workflows and reducing manual effort by 80%",
-        "Designed and implemented scalable ETL pipelines using Apache Spark and Kafka, processing 10M+ daily transactions",
-        "Built real-time monitoring dashboards improving system observability and reducing incident response time by 40%",
-        "Optimized database queries and API performance, resulting in a 30% reduction in latency",
+        "Owned and delivered a distributed Data Subject Rights platform supporting enterprise-scale GDPR/CCPA workflows.",
+        "Migrated monolithic services to Spring Boot microservices, improving scalability and fault isolation.",
+        "Built event-driven pipelines using Apache Kafka for asynchronous processing and escalation workflows.",
+        "Executed low-downtime migration of 1M+ MySQL records, redesigning schemas and optimizing queries.",
+        "Migrated encrypted artifacts to AWS S3, improving durability, availability, and cost efficiency.",
+        "Implemented CI/CD pipelines with Jenkins and automated tests using JUnit and Mockito (85%+ coverage).",
+        "Participated in code reviews, design discussions, and production incident resolution.",
+        "Demonstrated end-to-end ownership from design through deployment and operations.",
       ],
       technologies: [
         "Java",
         "Spring Boot",
         "React",
-        "Apache Spark",
-        "Kafka",
-        "PostgreSQL",
-        "Docker",
-        "Kubernetes",
+        "Apache Kafka",
+        "MySQL",
+        "AWS S3",
+        "Jenkins",
+        "JUnit",
       ],
+    },
+    {
+      company: "Madras Institute of Technology",
+      role: "Software Developer Intern",
+      period: "Jun 2020 - Apr 2022",
+      location: "Chennai, India",
+      achievements: [
+        "Led a 6-member team to build a full-stack departmental portal using Angular, Node.js, GraphQL, and MySQL, delivering modules for academic management, placements, research, and an anonymous student feedback system.",
+        "Optimized backend deployments by containerizing and scaling multiple backend services with PM2 on a single server, resulting in higher availability, efficient query resolution, and reduced downtime during updates.",
+      ],
+      technologies: ["Angular", "Node.js", "GraphQL", "MySQL", "PM2"],
+    },
+    {
+      company: "Citicorp",
+      role: "Software Developer Intern",
+      period: "May 2021 - Jul 2021",
+      location: "Chennai, India",
+      achievements: [
+        "Built a Java dashboard to visualize release metrics with real-time filtering and analytics.",
+        "Implemented JUnit tests (80% coverage) and designed backend components using OOP and data structures.",
+      ],
+      technologies: ["Java", "JUnit", "OOP", "Data Structures"],
     },
     {
       company: "Bauble",
       role: "Head of Technology",
-      period: "Jun 2022 - Jun 2024",
+      period: "Jul 2020 - Jan 2021",
       location: "Remote",
       achievements: [
         "Co-founded and scaled an EdTech platform connecting 150+ students with resources and alumni mentorship",
@@ -65,7 +105,18 @@ export function ExperienceSection() {
                 {exp.achievements.map((achievement, i) => (
                   <li key={i} className="text-slate-300 flex items-start">
                     <span className="text-cyan-400 mr-2">▹</span>
-                    <span>{achievement}</span>
+                    {typeof achievement === "string" ? (
+                      <span>{achievement}</span>
+                    ) : (
+                      <a
+                        href={achievement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-cyan-400 transition-colors underline decoration-cyan-500/30 underline-offset-4"
+                      >
+                        {achievement.text}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
