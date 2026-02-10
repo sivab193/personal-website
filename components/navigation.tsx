@@ -26,9 +26,8 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-slate-950/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-slate-950/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -43,7 +42,9 @@ export function Navigation() {
                 {item.label}
               </a>
             ))}
-            <Button className="bg-cyan-600 hover:bg-cyan-700">Resume</Button>
+            <Button className="bg-cyan-600 hover:bg-cyan-700" asChild>
+              <a href="/resume.pdf" download="Sivaganesh_Resume.pdf">Resume</a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -65,7 +66,9 @@ export function Navigation() {
                 {item.label}
               </a>
             ))}
-            <Button className="bg-cyan-600 hover:bg-cyan-700 w-full">Resume</Button>
+            <Button className="bg-cyan-600 hover:bg-cyan-700 w-full" asChild>
+              <a href="/resume.pdf" download="Sivaganesh_Resume.pdf">Resume</a>
+            </Button>
           </div>
         )}
       </div>

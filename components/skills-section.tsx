@@ -2,103 +2,206 @@
 
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code2, Database, Cloud, Wrench } from "lucide-react"
+import {
+  Code2,
+  Layout,
+  Server,
+  Database,
+  Wrench,
+  Activity
+} from "lucide-react"
+import { cn } from "@/lib/utils"
+
+type SkillLevel = "Strong" | "Comfortable" | "Familiar"
+
+interface Skill {
+  name: string
+  level: SkillLevel
+}
+
+interface SkillCategory {
+  id: string
+  title: string
+  subtitle: string
+  icon: any
+  color: string
+  skills: Skill[]
+}
 
 export function SkillsSection() {
-  const skillCategories = [
+  const skillCategories: SkillCategory[] = [
     {
+      id: "languages",
+      title: "Languages",
+      subtitle: "Primary programming languages I use daily",
       icon: Code2,
-      title: "Languages & Frameworks",
+      color: "text-blue-400",
       skills: [
-        "Python",
-        "Java",
-        "JavaScript",
-        "TypeScript",
-        "Go",
-        "C++",
-        "React",
-        "Next.js",
-        "Node.js",
-        "Spring Boot",
-        "FastAPI",
-        "Express",
+        { name: "Java", level: "Strong" },
+        { name: "Python", level: "Strong" },
+        { name: "TypeScript", level: "Strong" },
+        { name: "C++", level: "Strong" },
+        { name: "JavaScript", level: "Strong" },
+        { name: "C", level: "Comfortable" },
+        { name: "PHP", level: "Comfortable" },
       ],
     },
     {
+      id: "database",
+      title: "Databases & Cloud",
+      subtitle: "Data storage and cloud platforms",
       icon: Database,
-      title: "Data & Databases",
+      color: "text-orange-400",
       skills: [
-        "PostgreSQL",
-        "MongoDB",
-        "Redis",
-        "MySQL",
-        "DynamoDB",
-        "Apache Kafka",
-        "Apache Spark",
-        "Airflow",
-        "ETL Pipelines",
+        { name: "GCP", level: "Strong" },
+        { name: "AWS", level: "Strong" },
+        { name: "MySQL", level: "Strong" },
+        { name: "MongoDB", level: "Strong" },
+        { name: "Firebase", level: "Strong" },
+        { name: "Vercel", level: "Strong" },
+        { name: "PostgreSQL", level: "Comfortable" },
+        { name: "Oracle", level: "Comfortable" },
       ],
     },
     {
-      icon: Cloud,
-      title: "Cloud & DevOps",
+      id: "frontend",
+      title: "Frontend Technologies",
+      subtitle: "Modern frameworks and UI tools",
+      icon: Layout,
+      color: "text-purple-400",
       skills: [
-        "AWS (EC2, S3, Lambda, RDS)",
-        "Docker",
-        "Kubernetes",
-        "Terraform",
-        "Jenkins",
-        "GitHub Actions",
-        "Grafana",
-        "Prometheus",
+        { name: "React", level: "Strong" },
+        { name: "Angular", level: "Strong" },
+        { name: "Redux", level: "Strong" },
+        { name: "NgRx", level: "Strong" },
+        { name: "Expo", level: "Strong" },
+        { name: "HTML", level: "Strong" },
+        { name: "CSS", level: "Strong" },
+        { name: "Vue", level: "Comfortable" },
+        { name: "Bootstrap", level: "Comfortable" },
       ],
     },
     {
+      id: "backend",
+      title: "Backend Technologies",
+      subtitle: "APIs, services and server-side development",
+      icon: Server,
+      color: "text-green-400",
+      skills: [
+        { name: "Spring Boot", level: "Strong" },
+        { name: "Flask", level: "Strong" },
+        { name: "Node.js", level: "Strong" },
+        { name: "REST", level: "Strong" },
+        { name: "GraphQL", level: "Strong" },
+        { name: "Django", level: "Comfortable" },
+        { name: "FastAPI", level: "Comfortable" },
+      ],
+    },
+    {
+      id: "devops",
+      title: "DevOps & Tools",
+      subtitle: "CI/CD, containers and developer tooling",
       icon: Wrench,
-      title: "Tools & Technologies",
+      color: "text-cyan-400",
       skills: [
-        "Git",
-        "Linux",
-        "REST APIs",
-        "GraphQL",
-        "gRPC",
-        "WebSocket",
-        "Microservices",
-        "System Design",
-        "Agile/Scrum",
-        "CI/CD",
+        { name: "Docker", level: "Strong" },
+        { name: "Jenkins", level: "Strong" },
+        { name: "SonarQube", level: "Strong" },
+        { name: "Checkmarx", level: "Strong" },
+        { name: "Kubernetes", level: "Strong" },
+        { name: "Maven", level: "Strong" },
+        { name: "Postman", level: "Strong" },
+        { name: "Git", level: "Strong" },
+        { name: "Splunk", level: "Comfortable" },
+      ],
+    },
+    {
+      id: "testing",
+      title: "Testing & Observability",
+      subtitle: "Testing, monitoring and reliability",
+      icon: Activity,
+      color: "text-pink-400",
+      skills: [
+        { name: "JUnit", level: "Strong" },
+        { name: "PyTest", level: "Strong" },
+        { name: "Cypress", level: "Strong" },
+        { name: "Jest", level: "Strong" },
+        { name: "Prometheus", level: "Comfortable" },
+        { name: "Grafana", level: "Comfortable" },
       ],
     },
   ]
 
-  return (
-    <section id="skills" className="py-20 px-4 bg-slate-950/50">
-      <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-4 text-slate-100">Technical Skills</h2>
-        <p className="text-center text-slate-400 mb-12 max-w-2xl mx-auto">
-          Comprehensive skill set spanning full-stack development, data engineering, and cloud infrastructure
-        </p>
+  const getBadgeVariant = (level: SkillLevel, accentColor: string) => {
+    switch (level) {
+      case "Strong":
+        return "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-transparent shadow-[0_0_10px_-4px_rgba(var(--accent-rgb),0.3)]" // Filled
+      case "Comfortable":
+        return "bg-transparent border-secondary/50 text-secondary-foreground hover:bg-secondary/10" // Outline
+      case "Familiar":
+        return "bg-secondary/30 text-muted-foreground border-transparent hover:bg-secondary/50" // Muted
+      default:
+        return "bg-secondary text-secondary-foreground"
+    }
+  }
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {skillCategories.map((category, index) => {
+  // Helper to extract RGB values for shadow color (simplified for this approach, 
+  // relying on Tailwind classes mostly but custom style for shadow color if needed.
+  // We'll stick to class-based variants for simplicity and performance).
+
+  return (
+    <section id="skills" className="py-20 px-4 relative overflow-hidden">
+      {/* Subtle background separation */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900/40 via-slate-950/60 to-slate-950 -z-10 pointer-events-none" />
+
+      <div className="container mx-auto">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100">Tech Stack</h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Technologies I use to design, build and deploy scalable applications
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {skillCategories.map((category) => {
             const Icon = category.icon
             return (
               <Card
-                key={index}
-                className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm hover:border-cyan-400/50 transition-all"
+                key={category.id}
+                className="group bg-slate-900/40 border-slate-800 p-8 backdrop-blur-sm 
+                         hover:-translate-y-1.5 hover:shadow-xl hover:border-slate-700 
+                         transition-all duration-300 relative overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon className="w-8 h-8 text-cyan-400" />
-                  <h3 className="text-xl font-bold text-slate-100">{category.title}</h3>
+                {/* Top glow accent */}
+                <div className={cn("absolute top-0 left-0 w-full h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300", category.color.replace('text-', 'bg-'))} />
+
+                <div className="flex items-start gap-4 mb-8">
+                  <div className={cn("p-3 rounded-xl bg-slate-950 border border-slate-800 group-hover:border-slate-700 transition-colors", category.color)}>
+                    <Icon className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-100 group-hover:text-white transition-colors">
+                      {category.title}
+                    </h3>
+                    <p className="text-sm text-slate-500 mt-1 font-medium">
+                      {category.subtitle}
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill, i) => (
+
+                <div className="flex flex-wrap gap-3">
+                  {category.skills.map((skill) => (
                     <Badge
-                      key={i}
-                      variant="secondary"
-                      className="bg-cyan-500/10 text-cyan-300 border-cyan-500/20 hover:bg-cyan-500/20 transition-colors"
+                      key={skill.name}
+                      variant="outline"
+                      className={cn(
+                        "transition-all duration-300 cursor-default px-3 py-1.5 text-sm",
+                        skill.level === "Strong" && "bg-slate-800/80 border-slate-700 text-slate-200 hover:scale-105 hover:bg-slate-800 hover:shadow-[0_0_12px_-3px_rgba(255,255,255,0.1)]",
+                        skill.level === "Comfortable" && "bg-transparent border-slate-700 text-slate-300 hover:scale-105 hover:border-slate-600 hover:bg-slate-800/30",
+                        skill.level === "Familiar" && "bg-slate-900/50 border-transparent text-slate-500 hover:text-slate-400 hover:bg-slate-900"
+                      )}
                     >
-                      {skill}
+                      {skill.name}
                     </Badge>
                   ))}
                 </div>
@@ -106,24 +209,6 @@ export function SkillsSection() {
             )
           })}
         </div>
-
-        <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm mt-8 max-w-5xl mx-auto">
-          <h3 className="text-2xl font-bold text-slate-100 mb-4">Areas of Expertise</h3>
-          <div className="grid md:grid-cols-3 gap-6 text-slate-300">
-            <div>
-              <h4 className="font-semibold text-cyan-400 mb-2">Full-Stack Development</h4>
-              <p className="text-sm">Building scalable web applications with modern frameworks and best practices</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-cyan-400 mb-2">Data Engineering</h4>
-              <p className="text-sm">Designing and implementing robust data pipelines and ETL workflows</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-cyan-400 mb-2">System Design</h4>
-              <p className="text-sm">Architecting distributed systems with high availability and scalability</p>
-            </div>
-          </div>
-        </Card>
       </div>
     </section>
   )

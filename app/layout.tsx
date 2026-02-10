@@ -9,7 +9,7 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Sivaganesh Balaganesh - Software Engineer",
   description:
-    "Personal portfolio of Sivaganesh Balaganesh - Full-Stack & Data Engineer seeking Summer 2025 internship",
+    "Personal portfolio of Sivaganesh Balaganesh - Full-Stack & Data Engineer seeking Summer 2026 internships",
   generator: "v0.app",
 }
 
