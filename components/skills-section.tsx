@@ -132,23 +132,6 @@ export function SkillsSection() {
     },
   ]
 
-  const getBadgeVariant = (level: SkillLevel, accentColor: string) => {
-    switch (level) {
-      case "Strong":
-        return "bg-secondary text-secondary-foreground hover:bg-secondary/80 border-transparent shadow-[0_0_10px_-4px_rgba(var(--accent-rgb),0.3)]" // Filled
-      case "Comfortable":
-        return "bg-transparent border-secondary/50 text-secondary-foreground hover:bg-secondary/10" // Outline
-      case "Familiar":
-        return "bg-secondary/30 text-muted-foreground border-transparent hover:bg-secondary/50" // Muted
-      default:
-        return "bg-secondary text-secondary-foreground"
-    }
-  }
-
-  // Helper to extract RGB values for shadow color (simplified for this approach, 
-  // relying on Tailwind classes mostly but custom style for shadow color if needed.
-  // We'll stick to class-based variants for simplicity and performance).
-
   return (
     <section id="skills" className="py-20 px-4 relative overflow-hidden">
       {/* Subtle background separation */}

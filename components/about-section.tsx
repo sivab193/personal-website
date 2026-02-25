@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card"
-import { GraduationCap, Briefcase, Award, ExternalLink } from "lucide-react"
+import { GraduationCap, Briefcase, Award } from "lucide-react"
 
 export function AboutSection() {
   return (
