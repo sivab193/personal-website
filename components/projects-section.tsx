@@ -5,6 +5,14 @@ import { Github, ExternalLink } from "lucide-react"
 export function ProjectsSection() {
   const projects = [
     {
+      title: "ZeroHour",
+      description: "Precision event countdown PWA with smart timezone handling, public profile pages with auto-generated OG cards",
+      technologies: ["Next.js", "React", "TypeScript", "Firebase", "Tailwind CSS", "Framer Motion"],
+      github: "https://github.com/sivab193/ZeroHour",
+      demo: "https://zh.siv19.dev",
+      highlights: ["Smart Timezone Support", "PWA with Offline Access", "Public Profiles & OG Sharing"],
+    },
+    {
       title: "CityBus Bot",
       description: "Real-time Telegram bot for tracking CityBus in Greater Lafayette. Features fuzzy stop search, live arrival predictions, and automated subscription alerts.",
       technologies: ["Python", "GTFS", "Telegram API", "Google Cloud"],
