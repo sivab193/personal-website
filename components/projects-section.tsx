@@ -77,6 +77,7 @@ export async function ProjectsSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-slate-400 hover:text-cyan-400 transition-colors"
+                        aria-label={`View ${project.title} source code on GitHub`}
                       >
                         <Github size={20} />
                       </a>
@@ -87,6 +88,7 @@ export async function ProjectsSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-slate-400 hover:text-cyan-400 transition-colors"
+                        aria-label={`View live demo for ${project.title}`}
                       >
                         <ExternalLink size={20} />
                       </a>

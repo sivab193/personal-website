@@ -62,6 +62,7 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-cyan-400 transition-colors"
+              aria-label="GitHub Profile"
             >
               <Github size={24} />
             </a>
@@ -70,10 +71,11 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-cyan-400 transition-colors"
+              aria-label="LinkedIn Profile"
             >
               <Linkedin size={24} />
             </a>
-            <a href="mailto:sivaganesh193@gmail.com" className="text-slate-400 hover:text-cyan-400 transition-colors">
+            <a href="mailto:sivaganesh193@gmail.com" className="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="Email Me">
               <Mail size={24} />
             </a>
           </div>
