@@ -20,8 +20,8 @@ export async function ProjectsSection() {
   let projects: Project[] = [];
   try {
     const response = await fetch("https://cb.siv19.dev/api/projects", {
-      cache: "no-store", // Always fetch from API
       signal: AbortSignal.timeout(5000) // 5 second timeout to prevent hanging requests
+      next: { revalidate: 600 } // Cache projects data for 10 minutes to improve load time
     });
     if (response.ok) {
       const data: Project[] = await response.json();
@@ -78,6 +78,7 @@ export async function ProjectsSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-slate-400 hover:text-cyan-400 transition-colors"
+                        aria-label={`View ${project.title} source code on GitHub`}
                       >
                         <Github size={20} />
                       </a>
@@ -88,6 +89,7 @@ export async function ProjectsSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-slate-400 hover:text-cyan-400 transition-colors"
+                        aria-label={`View live demo for ${project.title}`}
                       >
                         <ExternalLink size={20} />
                       </a>
