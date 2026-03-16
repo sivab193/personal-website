@@ -20,7 +20,7 @@ export async function ProjectsSection() {
   let projects: Project[] = [];
   try {
     const response = await fetch("https://cb.siv19.dev/api/projects", {
-      signal: AbortSignal.timeout(5000) // 5 second timeout to prevent hanging requests
+      signal: AbortSignal.timeout(5000), // 5 second timeout to prevent hanging requests
       next: { revalidate: 600 } // Cache projects data for 10 minutes to improve load time
     });
     if (response.ok) {
