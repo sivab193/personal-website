@@ -51,8 +51,9 @@ export function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    aria-label="Connect on LinkedIn"
                   >
-                    <Linkedin size={20} />
+                    <Linkedin size={20} aria-hidden="true" />
                     <span className="text-sm">LinkedIn</span>
                   </a>
                   <a
@@ -60,8 +61,9 @@ export function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    aria-label="View GitHub Profile"
                   >
-                    <Github size={20} />
+                    <Github size={20} aria-hidden="true" />
                     <span className="text-sm">GitHub</span>
                   </a>
                   <a
@@ -69,8 +71,9 @@ export function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    aria-label="View IEEE Profile"
                   >
-                    <span className="font-bold border border-current rounded px-1 text-xs">IEEE</span>
+                    <span className="font-bold border border-current rounded px-1 text-xs" aria-hidden="true">IEEE</span>
                     <span className="text-sm">Profile</span>
                   </a>
                 </div>
