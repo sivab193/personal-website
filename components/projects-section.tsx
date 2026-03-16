@@ -20,7 +20,7 @@ export async function ProjectsSection() {
   let projects: Project[] = [];
   try {
     const response = await fetch("https://cb.siv19.dev/api/projects", {
-      cache: "no-store" // Always fetch from API
+      next: { revalidate: 600 } // Cache projects data for 10 minutes to improve load time
     });
     if (response.ok) {
       const data: Project[] = await response.json();
