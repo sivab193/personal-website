@@ -62,9 +62,24 @@ export async function ProjectsSection() {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
-                      {project.title}
-                    </h3>
+                    {project.demo || project.github ? (
+                      <a
+                        href={project.demo || project.github || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/title inline-flex items-center gap-2"
+                        aria-label={`View ${project.title}`}
+                      >
+                        <h3 className="text-xl font-bold text-slate-100 group-hover:text-cyan-400 group-hover/title:underline transition-colors">
+                          {project.title}
+                        </h3>
+                        <ExternalLink size={16} className="text-slate-500 opacity-0 group-hover/title:opacity-100 transition-opacity" aria-hidden="true" />
+                      </a>
+                    ) : (
+                      <h3 className="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">
+                        {project.title}
+                      </h3>
+                    )}
                     {project.lastCommitTimestamp && (
                       <span className="text-xs text-slate-500">
                         Updated: {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(project.lastCommitTimestamp))}

@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Mail, Linkedin, Github, MapPin } from "lucide-react"
+import { Mail, Linkedin, Github, MapPin, Instagram, Box } from "lucide-react"
 
 export function ContactSection() {
   return (
@@ -27,10 +27,10 @@ export function ContactSection() {
                   </a>
                   <br />
                   <a
-                    href="mailto:sivaganesh193@gmail.com"
+                    href="mailto:siv@siv19.dev"
                     className="text-slate-400 hover:text-cyan-400 transition-colors"
                   >
-                    sivaganesh193@gmail.com
+                    siv@siv19.dev
                   </a>
                 </div>
               </div>
@@ -75,6 +75,26 @@ export function ContactSection() {
                   >
                     <span className="font-bold border border-current rounded px-1 text-xs" aria-hidden="true">IEEE</span>
                     <span className="text-sm">Profile</span>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/siv19.dev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    aria-label="View Instagram Profile"
+                  >
+                    <Instagram size={20} aria-hidden="true" />
+                    <span className="text-sm">Instagram</span>
+                  </a>
+                  <a
+                    href="https://www.worldcubeassociation.org/persons/2017BALA04"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
+                    aria-label="View WCA Profile"
+                  >
+                    <Box size={20} aria-hidden="true" />
+                    <span className="text-sm">WCA Profile</span>
                   </a>
                 </div>
               </div>
