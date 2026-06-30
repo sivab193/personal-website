@@ -30,7 +30,7 @@ export function ContactSection() {
                     href="mailto:siv@siv19.dev"
                     className="text-slate-400 hover:text-cyan-400 transition-colors"
                   >
-                    siv@siv19.dev
+                    contact@siv19.dev
                   </a>
                 </div>
               </div>
@@ -47,7 +47,7 @@ export function ContactSection() {
                 <p className="text-slate-300 font-semibold mb-3">Connect with me</p>
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="https://www.linkedin.com/in/sivaganesh-balaganesh/"
+                    href="https://www.linkedin.com/in/sivab193/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors"
