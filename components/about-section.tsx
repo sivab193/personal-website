@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card"
+import { TiltCard } from "@/components/tilt-card"
 import { GraduationCap, Briefcase, Award } from "lucide-react"
 
 export function AboutSection() {
@@ -8,7 +9,8 @@ export function AboutSection() {
         <h2 className="text-4xl font-bold text-center mb-12 text-slate-100">About Me</h2>
 
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm">
+          <TiltCard>
+          <Card className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm h-full">
             <GraduationCap className="w-12 h-12 text-cyan-400 mb-4" />
             <h3 className="text-xl font-bold text-slate-100 mb-2">Education</h3>
             <div className="space-y-3 text-slate-300">
@@ -25,8 +27,10 @@ export function AboutSection() {
               </div>
             </div>
           </Card>
+          </TiltCard>
 
-          <Card className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm">
+          <TiltCard>
+          <Card className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm h-full">
             <Briefcase className="w-12 h-12 text-cyan-400 mb-4" />
             <h3 className="text-xl font-bold text-slate-100 mb-2">Experience</h3>
             <div className="space-y-3 text-slate-300">
@@ -47,8 +51,10 @@ export function AboutSection() {
               </div>
             </div>
           </Card>
+          </TiltCard>
 
-          <Card className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm flex flex-col">
+          <TiltCard>
+          <Card className="bg-slate-900/50 border-cyan-500/30 p-6 backdrop-blur-sm flex flex-col h-full">
             <Award className="w-12 h-12 text-cyan-400 mb-4" />
             <h3 className="text-xl font-bold text-slate-100 mb-4">Publications</h3>
             <ul className="space-y-2 text-slate-300 flex-grow text-sm">
@@ -90,10 +96,12 @@ export function AboutSection() {
               </li>
             </ul>
           </Card>
+          </TiltCard>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm">
+          <TiltCard>
+          <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm h-full">
             <h3 className="text-2xl font-bold text-slate-100 mb-4">Professional Summary</h3>
             <div className="space-y-4 text-slate-300 leading-relaxed text-justify">
               <p>
@@ -107,8 +115,10 @@ export function AboutSection() {
               </p>
             </div>
           </Card>
+          </TiltCard>
 
-          <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm">
+          <TiltCard>
+          <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm h-full">
             <h3 className="text-2xl font-bold text-slate-100 mb-6">Areas of Expertise</h3>
             <div className="space-y-6">
               <div>
@@ -125,6 +135,7 @@ export function AboutSection() {
               </div>
             </div>
           </Card>
+          </TiltCard>
         </div>
       </div>
     </section>

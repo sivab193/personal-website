@@ -153,3 +153,179 @@
 .animate-fade-in-delay {
   animation: fade-in-delay 0.5s ease-out 0.2s both;
 }
+
+/* ============================================================
+   3D project cards — CSS tilt + live-iframe preview
+   ============================================================ */
+.project-card {
+  position: relative;
+  height: 100%;
+  --rx: 0deg;
+  --ry: 0deg;
+}
+.project-card-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(52, 225, 232, 0.18);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(2, 6, 23, 0.68));
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s;
+}
+.project-card:hover .project-card-inner { border-color: rgba(52, 225, 232, 0.45); }
+.project-card-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 14px;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(52, 225, 232, 0.14), transparent 55%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+.project-card:hover .project-card-inner::after { opacity: 1; }
+
+.project-preview { position: relative; }
+.project-chrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: #0a1018;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+.project-chrome > span:not(.project-url) { width: 8px; height: 8px; border-radius: 50%; background: #2a3547; }
+.project-url {
+  margin-left: 8px;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.66rem;
+  color: #5b6a82;
+  background: #060a12;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 5px;
+  padding: 2px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.project-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #05080f; }
+.project-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; z-index: 1; }
+.project-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  border: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+  background: #05080f;
+}
+.project-iframe[data-loaded="true"] { opacity: 1; }
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 8, 15, 0.35);
+  opacity: 0;
+  transition: opacity 0.25s;
+  z-index: 6;
+}
+.project-card:hover .project-overlay { opacity: 1; }
+.project-overlay span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #04161a;
+  background: #34e1e8;
+  padding: 8px 14px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px -6px rgba(52, 225, 232, 0.5);
+}
+
+.project-body { padding: 18px; position: relative; z-index: 3; display: flex; flex-direction: column; flex: 1; }
+.project-title-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.project-title { display: inline-flex; align-items: center; gap: 8px; color: #e7eef8; min-width: 0; }
+.project-title h3 { font-size: 1.15rem; font-weight: 700; transition: color 0.2s; }
+.project-title:hover h3 { color: #34e1e8; }
+.project-title svg { color: #5b6a82; opacity: 0; transition: opacity 0.2s; flex-shrink: 0; }
+.project-title:hover svg { opacity: 1; }
+.project-gh { color: #8b98ad; transition: color 0.2s; flex-shrink: 0; }
+.project-gh:hover { color: #34e1e8; }
+.project-desc { color: #93a1b8; font-size: 0.82rem; line-height: 1.55; margin: 8px 0 12px; }
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.72rem;
+  color: #5b6a82;
+  margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+  margin-top: auto;
+}
+.project-star { color: #f5c36b; }
+.project-lang { display: inline-flex; align-items: center; gap: 6px; }
+.project-lang-dot { width: 9px; height: 9px; border-radius: 50%; }
+.project-live { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; animation: livepulse 2s infinite; }
+@keyframes livepulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.project-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.project-tag {
+  font-size: 0.66rem;
+  padding: 3px 9px;
+  border-radius: 6px;
+  color: #34e1e8;
+  background: rgba(52, 225, 232, 0.08);
+  border: 1px solid rgba(52, 225, 232, 0.2);
+}
+
+/* ============================================================
+   Reusable hover tilt for section cards (About / Skills / Contact)
+   ============================================================ */
+.tilt3d { --rx: 0deg; --ry: 0deg; }
+.tilt3d > * {
+  transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 100%;
+}
+
+/* Glowing animated timeline spine for the experience section */
+.timeline-spine { position: relative; }
+.timeline-spine::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, #34e1e8, #9d8bff, transparent);
+  box-shadow: 0 0 14px rgba(52, 225, 232, 0.35);
+}
+.timeline-node {
+  position: absolute;
+  left: -26px;
+  top: 10px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--background);
+  border: 2px solid #34e1e8;
+  box-shadow: 0 0 10px rgba(52, 225, 232, 0.4);
+}
+@media (max-width: 767px) {
+  .timeline-spine::before { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card-inner,
+  .tilt3d > * { transform: none !important; transition: none !important; }
+  .project-live { animation: none; }
+}
