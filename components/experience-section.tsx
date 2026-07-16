@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { TiltCard } from "@/components/tilt-card"
 
 interface Achievement {
   text: string
@@ -93,12 +94,14 @@ export function ExperienceSection() {
       <div className="container mx-auto">
         <h2 className="text-4xl font-bold text-center mb-12 text-slate-100">Work Experience</h2>
 
-        <div className="space-y-8 max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto md:pl-10 timeline-spine">
           {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm hover:border-cyan-400/50 transition-all"
-            >
+            <div key={index} className="relative mb-8 last:mb-0">
+              <span className="timeline-node hidden md:block" aria-hidden="true" />
+              <TiltCard max={4}>
+              <Card
+                className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm hover:border-cyan-400/50 transition-all h-full"
+              >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-cyan-400">{exp.role}</h3>
@@ -137,7 +140,9 @@ export function ExperienceSection() {
                   </Badge>
                 ))}
               </div>
-            </Card>
+              </Card>
+              </TiltCard>
+            </div>
           ))}
         </div>
       </div>

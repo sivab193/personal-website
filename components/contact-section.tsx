@@ -1,6 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
+import { TiltCard } from "@/components/tilt-card"
 import { Mail, Linkedin, Github, MapPin, Instagram, Box } from "lucide-react"
 
 export function ContactSection() {
@@ -14,7 +15,8 @@ export function ContactSection() {
         </p>
 
         <div className="flex justify-center">
-          <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm w-full max-w-xl">
+          <TiltCard className="w-full max-w-xl" max={4}>
+          <Card className="bg-slate-900/50 border-cyan-500/30 p-8 backdrop-blur-sm w-full">
             <h3 className="text-2xl font-bold text-slate-100 mb-6">Contact Information</h3>
 
             <div className="space-y-4">
@@ -100,6 +102,7 @@ export function ContactSection() {
               </div>
             </div>
           </Card>
+          </TiltCard>
         </div>
       </div>
     </section>

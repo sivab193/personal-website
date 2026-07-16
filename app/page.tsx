@@ -7,13 +7,16 @@ import { ContactSection } from "@/components/contact-section"
 import { Navigation } from "@/components/navigation"
 import { SectionWrapper } from "@/components/section-wrapper"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { getProjects } from "@/lib/get-projects"
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects()
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950">
       <Navigation />
       <main>
-        <HeroSection />
+        <HeroSection projects={projects} />
         <SectionWrapper delay={0.2}>
           <AboutSection />
         </SectionWrapper>
@@ -21,7 +24,7 @@ export default function Home() {
           <ExperienceSection />
         </SectionWrapper>
         <SectionWrapper delay={0.1}>
-          <ProjectsSection />
+          <ProjectsSection projects={projects} />
         </SectionWrapper>
         <SectionWrapper delay={0.1}>
           <SkillsSection />

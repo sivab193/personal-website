@@ -1,13 +1,21 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
 import { Button } from "@/components/ui/button"
 import { Github, Linkedin, Mail, FileText } from "lucide-react"
-import { TerminalAnimation } from "./terminal-animation"
+import { Terminal } from "./terminal"
+import type { Project } from "@/lib/projects"
 
-export function HeroSection() {
+// WebGL backdrop is heavy — load it only in the browser, and only when we
+// decide the device can handle it (see enable3d below).
+const HeroBackdrop = dynamic(() => import("./hero-backdrop"), { ssr: false })
+
+export function HeroSection({ projects }: { projects: Project[] }) {
   const [displayText, setDisplayText] = useState("")
+  const [enable3d, setEnable3d] = useState(false)
   const fullText = "Full Stack Developer"
+
   useEffect(() => {
     let index = 0
     const timer = setInterval(() => {
@@ -18,18 +26,34 @@ export function HeroSection() {
         clearInterval(timer)
       }
     }, 100)
-
     return () => clearInterval(timer)
   }, [])
 
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const wide = window.matchMedia("(min-width: 768px)").matches
+    setEnable3d(wide && !reduce)
+  }, [])
+
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-4">
-      <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden">
+      {/* 3D / fallback backdrop */}
+      <div className="absolute inset-0 -z-10" aria-hidden="true">
+        {enable3d ? (
+          <HeroBackdrop />
+        ) : (
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(52,225,232,0.10),transparent_55%)]" />
+        )}
+        {/* fade edges so particles melt into the page */}
+        <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_10%,transparent_35%,var(--background)_100%)]" />
+      </div>
+
+      <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center relative">
         <div className="space-y-6 animate-fade-in">
           <div className="space-y-2">
-            <p className="text-cyan-400 text-lg">Hi, my name is</p>
+            <p className="text-cyan-400 text-lg font-mono">$ echo &quot;Hi, my name is&quot;</p>
             <h1 className="text-5xl md:text-7xl font-bold text-slate-100">Sivaganesh B</h1>
-            <h2 className="text-3xl md:text-5xl font-bold text-slate-400 min-h-[60px]">
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-400 min-h-[60px] font-mono">
               {displayText}
               <span className="animate-pulse"> |</span>
             </h2>
@@ -75,14 +99,14 @@ export function HeroSection() {
             >
               <Linkedin size={24} />
             </a>
-            <a href="mailto:siv@siv19.dev" className="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="Email Me">
+            <a href="mailto:contact@siv19.dev" className="text-slate-400 hover:text-cyan-400 transition-colors" aria-label="Email Me">
               <Mail size={24} />
             </a>
           </div>
         </div>
 
         <div className="animate-fade-in-delay">
-          <TerminalAnimation />
+          <Terminal projects={projects} />
         </div>
       </div>
     </section>
